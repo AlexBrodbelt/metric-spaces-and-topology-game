@@ -7,19 +7,20 @@ Level 1
 
 Title "Triangle inequality"
 
-Introduction "When proving many theorems about limits in real analysis,
+Introduction "# Transitioning to metric spaces
+When proving many theorems about limits in real analysis,
 the triangle inequality is the biggest ingredient.
 In the theory of metric spaces, we will aim to generalise some of these concepts in real
-analysis to things other than the real numbers ℝ
-(such as ℝ² or even geometric shapes...).
-When we make just jump to the wider setting, instead of using the absolute value |.| in
-definitions (as was done in real analysis to measure distances), we will assume our space X
-has an associated function d : X×X → ℝ>0 where d(x,y) will represent the 'distance' between
-x, y ∈ X (in place of how |x-y| is used to measure distances in ℝ).
-To behave like we expect distances should, our distance function must satisfy 2 conditions
+analysis to things other than the real numbers $\\mathbb{R}$
+(such as $\\mathbb{R}^2$ or even geometric shapes...).
+When we make the jump to the wider setting, we will assume our space $X$
+has an associated function $d \\colon X \\times X \\to \\mathbb{R}_{\\geq0}$ where $d(x,y)$
+will represent the 'distance' between
+$x, y \\in X$ (in place of how $|x-y|$ is used to measure distances in $\\mathbb{R}$).
+To behave like we expect distances should, our distance $d$ function must satisfy 2 conditions
 which will be part of the metric space axioms:
-- d(x,y) = 0 ↔ x
-- d(x,z) ≥ d(x,y) + d(y,z) (the triangle inequality)
+- $d(x,y) = 0 \\iff x=y$
+- $d(x,z) \\leq d(x,y) + d(y,z)$ *(the triangle inequality)*
 
 # Task:
 Now, to remind ourself about the power of the triangle inequality, let's show it's equivalent
