@@ -1,28 +1,43 @@
 import Game.Metadata
+import Mathlib.Tactic
+import Mathlib.Data.Real.Basic
+
+
+--import Mathlib.Util.Delaborators
 
 World "DemoWorld"
 Level 1
 
-Title "Hello World"
+Title "Triangle inequality"
 
-Introduction "This text is shown as first message when the level is played.
-You can insert hints in the proof below. They will appear in this side panel
-depending on the proof a user provides."
+Introduction "Topology intro"
 
-Statement (h : x = 2) (g: y = 4) : x + x = y := by
-  Hint "You can either start using `{h}` or `{g}`."
-  Branch
-    rw [g]
-    Hint "You should use `{h}` now."
-    rw [h]
-  rw [h]
-  Hint "You should use `{g}` now."
-  rw [g]
+#check abs (-3)
+#check |-3|
+#eval abs (-3)
+#eval |-3|
+#check sub_zero
+#check ring_nf
 
-Conclusion "This last message appears if the level is solved."
+Statement:
+    (∀ (x y z : ℝ),  |x - y| + |y - z| ≥ |x - z|) ↔
+    (∀ (x y z : ℝ), |(x-z) - (y-z)| ≥ |x-z| - |y-z|) := by
+  Hint "To prove iff statements, use `constructor` to reduce to proving each direction"
+  constructor
+  · intro tri_ineq x y z
+    specialize tri_ineq (x-z) (y-z) 0
+    rw [sub_zero] at tri_ineq
+    rw [sub_zero] at tri_ineq
+    linarith
+  · intro rev_tri_ineq x y z
+    specialize rev_tri_ineq (x-z) (y-z) 0
+    rw [sub_zero] at rev_tri_ineq
+    rw [sub_zero] at rev_tri_ineq
+    sorry
+Conclusion "The triangle inequality is a key part of many proofs around limits in Real analysis"
 
-/- Use these commands to add items to the game's inventory. -/
+/- use these commands to add items to the game's inventory. -/
 
-NewTactic rw rfl
--- NewLemma Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
+NewTactic rw rfl exact linarith ring apply dsimp intro use
+
+NewTheorem gt_iff_lt add_lt_add sub_le_iff_le_add add_comm dist_comm
