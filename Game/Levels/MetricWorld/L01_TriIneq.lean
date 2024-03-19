@@ -2,7 +2,7 @@ import Game.Metadata
 import Mathlib.Tactic
 import Mathlib.Data.Real.Basic
 
-World "DemoWorld"
+World "MetricWorld"
 Level 1
 
 Title "Triangle inequality"

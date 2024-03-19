@@ -1,44 +1,88 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Feb 29 16:58:28 2024\n"
+"POT-Creation-Date: Tue Mar 19 16:52:51 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit"
 
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "Hello World"
+#: Game.Levels.MetricWorld.L01_TriIneq
+msgid "Triangle inequality"
 msgstr ""
 
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "This text is shown as first message when the level is played.\n"
-"You can insert hints in the proof below. They will appear in this side panel\n"
-"depending on the proof a user provides."
+#: Game.Levels.MetricWorld.L01_TriIneq
+msgid "# Transitioning to metric spaces\n"
+"When proving many theorems about limits in real analysis,\n"
+"the triangle inequality is the biggest ingredient.\n"
+"In the theory of metric spaces, we will aim to generalise some of these concepts in real\n"
+"analysis to things other than the real numbers $\mathbb{R}$\n"
+"(such as $\mathbb{R}^2$ or even geometric shapes...).\n"
+"When we make the jump to the wider setting, we will assume our space $X$\n"
+"has an associated function $d \colon X \times X \to \mathbb{R}_{\geq0}$ where $d(x,y)$\n"
+"will represent the 'distance' between\n"
+"$x, y \in X$ (in place of how $|x-y|$ is used to measure distances in $\mathbb{R}$).\n"
+"To behave like we expect distances should, our distance function $d$ must satisfy 2 conditions\n"
+"which will be part of the metric space axioms:\n"
+"- $d(x,y) = 0 \iff x=y$\n"
+"- $d(x,z) \leq d(x,y) + d(y,z)$ *(the triangle inequality)*\n"
+"\n"
+"# Task:\n"
+"Now, to remind ourself about the power of the triangle inequality, let's show it's equivalent\n"
+"to the reverse triangle inequality (another tool in real analysis) assuming very little about\n"
+"what the absolute value of real numbers actually is."
 msgstr ""
 
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "You can either start using `«{h}»` or `«{g}»`."
+#: Game.Levels.MetricWorld.L01_TriIneq
+msgid "To prove iff statements, use `constructor` to reduce to proving each direction"
 msgstr ""
 
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "You should use `«{h}»` now."
+#: Game.Levels.MetricWorld.L01_TriIneq
+msgid "The triangle inequality is a key part of many proofs around limits in Real analysis"
 msgstr ""
 
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "You should use `«{g}»` now."
+#: Game.Levels.MetricWorld.L02_ClosedBallClosed
+msgid "Topology exercise"
 msgstr ""
 
-#: Game.Levels.DemoWorld.L01_HelloWorld
+#: Game.Levels.MetricWorld.L02_ClosedBallClosed
+msgid "Topology intro"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L02_ClosedBallClosed
+msgid "some hint here"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L02_ClosedBallClosed
+msgid "this last message appears if the level is solved."
+msgstr ""
+
+#: Game.Levels.MetricWorld.L02_ClosedBallClosed
+msgid ""
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_LimitDfn
+msgid "Topology exercise"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_LimitDfn
+msgid "Topology intro"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_LimitDfn
+msgid "some hint here"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_LimitDfn
 msgid "This last message appears if the level is solved."
 msgstr ""
 
-#: Game.Levels.DemoWorld
-msgid "Demo World"
+#: Game.Levels.MetricWorld
+msgid "Metric World"
 msgstr ""
 
-#: Game.Levels.DemoWorld
+#: Game.Levels.MetricWorld
 msgid "\n"
 "This introduction is shown before one enters level 1 of the demo world. Use markdown.\n"
 ""

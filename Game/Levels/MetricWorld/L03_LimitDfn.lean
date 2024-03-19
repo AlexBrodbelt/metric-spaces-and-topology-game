@@ -4,8 +4,8 @@ import Mathlib.Topology.Instances.Real
 import Mathlib.Analysis.NormedSpace.BanachSteinhaus
 import Game.Metadata
 
-World "DemoWorld"
-Level 2
+World "MetricWorld"
+Level 3
 
 Title "Topology exercise"
 

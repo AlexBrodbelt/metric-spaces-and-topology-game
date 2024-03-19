@@ -1,4 +1,4 @@
-import Game.Levels.DemoWorld
+import Game.Levels.MetricWorld
 
 -- Here's what we'll put on the title screen
 Title "Hello World Game"
