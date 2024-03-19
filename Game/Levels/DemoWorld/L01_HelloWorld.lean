@@ -17,7 +17,7 @@ When we make the jump to the wider setting, we will assume our space $X$
 has an associated function $d \\colon X \\times X \\to \\mathbb{R}_{\\geq0}$ where $d(x,y)$
 will represent the 'distance' between
 $x, y \\in X$ (in place of how $|x-y|$ is used to measure distances in $\\mathbb{R}$).
-To behave like we expect distances should, our distance $d$ function must satisfy 2 conditions
+To behave like we expect distances should, our distance function $d$ must satisfy 2 conditions
 which will be part of the metric space axioms:
 - $d(x,y) = 0 \\iff x=y$
 - $d(x,z) \\leq d(x,y) + d(y,z)$ *(the triangle inequality)*
