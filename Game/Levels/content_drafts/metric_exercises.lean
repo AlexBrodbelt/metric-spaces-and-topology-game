@@ -2,6 +2,7 @@ import Mathlib.Tactic
 import Mathlib.Util.Delaborators
 import Mathlib.Topology.Instances.Real
 import Mathlib.Analysis.NormedSpace.BanachSteinhaus
+import Mathlib.Data.Set.Basic
 
 open Set Filter
 open Topology Filter
@@ -89,12 +90,23 @@ lemma question_1 {X : Type*} [MetricSpace X] : IsOpen { x | dist x c > r } := by
       rw [sub_le_iff_le_add, add_comm, dist_comm b a]
       apply dist_triangle a b c
 
-lemma question_2 {x : Type*} [MetricSpace x] {a : Set x}: interior a = a \ (frontier a) := by
-  ext x; constructor
+lemma question_2 {x : Type*} [TopologicalSpace x] {a : Set x}: interior a = a \ (frontier a) := by
+  ext x
+  constructor
+  · intro x_in_interior
+    constructor
+    · apply interior_subset
+      exact x_in_interior
+    · by_contra x_in_frontier
+      rcases x_in_frontier with ⟨_, x_not_in_interior⟩
+      absurd x_not_in_interior x_in_interior
+      trivial
   · intro h
-    sorry
-  · intro h
-    sorry
+    rcases h with ⟨x_in_a, x_not_in_frontier⟩
+    rw [frontier, Set.mem_diff, Classical.not_and_iff_or_not_not, not_not_mem] at x_not_in_frontier
+    rcases x_not_in_frontier with x_not_in_closure | x_in_interior
+    · exact absurd (subset_closure x_in_a) x_not_in_closure
+    · exact x_in_interior
 
 
 example (hr : 0 < r) : a ∈ Metric.ball a r :=

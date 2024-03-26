@@ -20,6 +20,7 @@ $x, y \\in X$ (in place of how $|x-y|$ is used to measure distances in $\\mathbb
 To behave like we expect distances should, our distance function $d$ must satisfy 2 conditions
 which will be part of the metric space axioms:
 - $d(x,y) = 0 \\iff x=y$
+- $d(x,y) = d(y,x)$
 - $d(x,z) \\leq d(x,y) + d(y,z)$ *(the triangle inequality)*
 
 # Task:
@@ -33,6 +34,7 @@ Statement:
   Hint "To prove iff statements, use `constructor` to reduce to proving each direction"
   constructor
   · intro tri_ineq x y
+    Hint "With what 'special' values can you use the triangle inequality to prove the claim?"
     specialize tri_ineq x y 0
     rw [sub_zero] at tri_ineq
     rw [sub_zero] at tri_ineq
@@ -47,6 +49,6 @@ Conclusion "The triangle inequality is a key part of many proofs around limits i
 
 /- use these commands to add items to the game's inventory. -/
 
-NewTactic rw rfl linarith intro constructor specialize
+NewTactic rw nth_rewrite rfl linarith intro constructor specialize
 
 NewTheorem sub_sub_sub_comm sub_self sub_zero
