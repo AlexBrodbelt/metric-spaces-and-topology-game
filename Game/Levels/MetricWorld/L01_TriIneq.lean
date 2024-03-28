@@ -28,19 +28,34 @@ Now, to remind ourself about the power of the triangle inequality, let's show it
 to the reverse triangle inequality (another tool in real analysis) assuming very little about
 what the absolute value of real numbers actually is."
 
+/- Useful rewrite for level 1 -/
+lemma useful_rewrite : ∀ (x y z : ℝ) , x - z - (y - z) = x - y := by
+  intro x y z
+  ring
+
 Statement:
     (∀ (x y z : ℝ),  |x - y| + |y - z| ≥ |x - z|) ↔
     (∀ (x y : ℝ), |x - y| ≥ |x| - |y|) := by
   Hint "To prove iff statements, use `constructor` to reduce to proving each direction"
   constructor
   · intro tri_ineq x y
-    Hint "With what 'special' values can you use the triangle inequality to prove the claim?"
+    Hint "With what values can you `specialize` the triangle inequality to prove the claim?"
     specialize tri_ineq x y 0
+    Hint "To simplify your hypothesis into the goal, you may like to use tactics `ring_nf` or `rw` with theorems in tab to the right."
+    Branch
+      ring_nf at tri_ineq
+      Hint "The `linarith` tactic is pretty good in these situations"
+      linarith
     rw [sub_zero] at tri_ineq
     rw [sub_zero] at tri_ineq
+    Hint "The `linarith` tactic is pretty good in these situations"
     linarith
   · intro rev_tri_ineq x y z
     specialize rev_tri_ineq (x-z) (y-z)
+    Hint "Look at the right panel to find useful theorems to rewrite your hypothesis"
+    Branch
+      rw [useful_rewrite] at rev_tri_ineq
+      linarith
     rw [sub_sub_sub_comm] at rev_tri_ineq
     rw [sub_self] at rev_tri_ineq
     rw [sub_zero] at rev_tri_ineq
@@ -49,6 +64,7 @@ Conclusion "The triangle inequality is a key part of many proofs around limits i
 
 /- use these commands to add items to the game's inventory. -/
 
+
 NewTactic rw nth_rewrite rfl linarith intro constructor specialize
 
-NewTheorem sub_sub_sub_comm sub_self sub_zero
+NewTheorem sub_sub_sub_comm sub_self sub_zero useful_rewrite
