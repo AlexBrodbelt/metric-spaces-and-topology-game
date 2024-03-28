@@ -91,6 +91,7 @@ lemma question_1 {X : Type*} [MetricSpace X] : IsOpen { x | dist x c > r } := by
       apply dist_triangle a b c
 
 lemma question_2 {x : Type*} [TopologicalSpace x] {a : Set x}: interior a = a \ (frontier a) := by
+  --  [self_diff_frontier]
   ext x
   constructor
   · intro x_in_interior
@@ -107,6 +108,9 @@ lemma question_2 {x : Type*} [TopologicalSpace x] {a : Set x}: interior a = a \ 
     rcases x_not_in_frontier with x_not_in_closure | x_in_interior
     · exact absurd (subset_closure x_in_a) x_not_in_closure
     · exact x_in_interior
+
+
+
 
 
 example (hr : 0 < r) : a ∈ Metric.ball a r :=
