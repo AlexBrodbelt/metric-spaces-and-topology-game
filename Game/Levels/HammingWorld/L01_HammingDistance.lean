@@ -4,6 +4,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Analysis.Normed.Group.Basic
 
 World "HammingWorld"
+
 Level 1
 
 Title "Hamming distance"
@@ -16,3 +17,16 @@ open Finset Function
 
 def hammingDist (x y : ∀ i, β i) : ℕ :=
   (univ.filter fun i => x i ≠ y i).card
+
+
+#print prefix String
+
+def stringOne : Vector Char 11 := ⟨"Hello World".data, rfl⟩
+
+def stringTwo : Vector Char 11 :=  ⟨"ByeByeWorld".data, rfl⟩
+
+#eval hammingDist stringOne.get stringTwo.get
+
+inductive Operation where
+  | Done | Substitution | Deletion | Insertion
+  deriving Repr, BEq
