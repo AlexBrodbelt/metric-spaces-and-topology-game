@@ -7,5 +7,6 @@ The documentation about how to use this template are at the [lean4game repositor
 * [Creating a new game](https://github.com/leanprover-community/lean4game/blob/main/doc/create_game.md)
   * [Updating an existing game](https://github.com/leanprover-community/lean4game/blob/main/doc/update_game.md)
   * [Running a game locally](https://github.com/leanprover-community/lean4game/blob/main/doc/running_locally.md)
+  
 
 
