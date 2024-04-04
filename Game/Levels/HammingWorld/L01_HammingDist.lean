@@ -2,6 +2,7 @@ import Game.Metadata
 import Mathlib.Tactic
 import Mathlib.Data.Real.Basic
 import Mathlib.Analysis.Normed.Group.Basic
+import Mathlib.InformationTheory.Hamming
 
 World "HammingWorld"
 
@@ -15,7 +16,7 @@ variable {γ : ι → Type*} [∀ i, DecidableEq (γ i)]
 
 open Finset Function
 
-def hammingDist (x y : ∀ i, β i) : ℕ :=
+def hammingDist_ (x y : ∀ i, β i) : ℕ :=
   (univ.filter fun i => x i ≠ y i).card
 
 
@@ -25,8 +26,12 @@ def stringOne : Vector Char 11 := ⟨"Hello World".data, rfl⟩
 
 def stringTwo : Vector Char 11 :=  ⟨"ByeByeWorld".data, rfl⟩
 
-#eval hammingDist stringOne.get stringTwo.get
+#eval hammingDist_ stringOne.get stringTwo.get
 
-inductive Operation where
-  | Done | Substitution | Deletion | Insertion
-  deriving Repr, BEq
+#check hammingDist
+
+-- lemma nonneg_hammingDist : hammingDist
+
+-- inductive Operation where
+--   | Done | Substitution | Deletion | Insertion
+--   deriving Repr, BEq

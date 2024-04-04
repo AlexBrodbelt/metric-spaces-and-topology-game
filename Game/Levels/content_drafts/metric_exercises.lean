@@ -109,6 +109,8 @@ lemma question_2 {x : Type*} [TopologicalSpace x] {a : Set x}: interior a = a \ 
     · exact absurd (subset_closure x_in_a) x_not_in_closure
     · exact x_in_interior
 
+lemma question_2_ {x : Type*} [TopologicalSpace x] {a : Set x}: interior a = a \ (frontier a) := by
+  rw [self_diff_frontier]
 
 
 
