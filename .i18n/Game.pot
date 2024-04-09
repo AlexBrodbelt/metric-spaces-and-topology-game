@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Mar 28 15:54:04 2024\n"
+"POT-Creation-Date: Tue Apr  9 10:09:01 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -83,19 +83,39 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: Game.Levels.MetricWorld.L03_LimitDfn
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
 msgid "Topology exercise"
 msgstr ""
 
-#: Game.Levels.MetricWorld.L03_LimitDfn
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
 msgid "Topology intro"
 msgstr ""
 
-#: Game.Levels.MetricWorld.L03_LimitDfn
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "To prove to sets are equal we use the axiom of extensionality `ext`, two sets $A$ and $B$ are equal if and only they have the same members"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "This theorem can be found in Mathlib as `self_diff_frontier`"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid ""
+msgstr ""
+
+#: Game.Levels.MetricWorld.L04_LimitDfn
+msgid "Topology exercise"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L04_LimitDfn
+msgid "Topology intro"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L04_LimitDfn
 msgid "some hint here"
 msgstr ""
 
-#: Game.Levels.MetricWorld.L03_LimitDfn
+#: Game.Levels.MetricWorld.L04_LimitDfn
 msgid "This last message appears if the level is solved."
 msgstr ""
 
