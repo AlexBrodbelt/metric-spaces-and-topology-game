@@ -18,18 +18,20 @@ variable {X : Type*} [MetricSpace X] (a b c : X)
 
 Statement :
     IsOpen { x | dist x c > r } := by
-  Hint "some hint here"
+  Hint "A set $S$ is open iff ∀ a ∈ S ∃ ε > 0 such that Ball a ε ⊆ S"
   rw [Metric.isOpen_iff]
-  intro a ainG
-  dsimp at ainG
+  intro a ainS
+  Hint "try `dsimp at h` to definitionally simplify the hypothesis which states a is in S, it looks a bit unwieldy otherwise..."
+  dsimp at ainS
+  Hint "what choice of ε can you provide such that ball a ε ⊆ S ?"
   use (dist a c - r) / 2
   constructor
-  · apply half_pos
-    linarith
-  intro b binB
-  dsimp
+  -- · apply half_pos;
+  linarith
+  Hint "Now we have to prove that if b ∈ ball a ε then b ∈ S"
+  intro b binB; dsimp
+  Hint "unfold the definition of b ∈ ball"
   rw [Metric.ball] at binB; dsimp at binB
-  rw [gt_iff_lt]
   have h₀ : - (dist a c - r) / 2 < - dist b a := by linarith [binB]
   have h₁ : dist a c > r + (dist a c - r) / 2 := by linarith
   calc
@@ -42,7 +44,7 @@ Statement :
     _ ≤ dist b c := by
       rw [sub_le_iff_le_add, add_comm, dist_comm b a]
       apply dist_triangle a b c
-Conclusion "this last message appears if the level is solved."
+Conclusion "You have proved S is open! Well done!"
 
 /- use these commands to add items to the game's inventory. -/
 

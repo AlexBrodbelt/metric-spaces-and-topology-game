@@ -1,4 +1,5 @@
 import Game.Levels.MetricWorld
+import Game.Levels.HammingWorld
 
 -- Here's what we'll put on the title screen
 Title "Hello World Game"

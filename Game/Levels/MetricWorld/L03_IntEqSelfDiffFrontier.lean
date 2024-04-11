@@ -21,19 +21,29 @@ variable {X : Type*} [MetricSpace X] (A B C : X)
 Statement {A : Set X} :  interior A = A \ (frontier A) := by
   Hint "To prove to sets are equal we use the axiom of extensionality `ext`, two sets $A$ and $B$ are equal if and only they have the same members"
   ext x
+  Hint "To prove iff statements, use `constructor` to reduce to proving each direction"
   constructor
+  Hint "Introduce the assumption into the local context by `intro`"
   · intro x_in_interior
     constructor
     · apply interior_subset
       exact x_in_interior
+    Hint "To prove by contradiction we use the tactic `by_contra h` where `h` takes the goal as a new assumption."
     · by_contra x_in_frontier
       rcases x_in_frontier with ⟨_, x_not_in_interior⟩
+      Hint "When we have to contradicting hypotheses we can use `absurd`"
       absurd x_not_in_interior x_in_interior
       trivial
-  · intro h
-    rcases h with ⟨x_in_a, x_not_in_frontier⟩
-    rw [frontier, Set.mem_diff, Classical.not_and_iff_or_not_not, not_not_mem] at x_not_in_frontier
+  · intro x_in_A_minus_boundary
+    Hint "Because a ∖ b = a ∩ bᶜ, if x ∈ a ∖ b then x ∈ a ∩ bᶜ. By definition, if x ∈ s ∩ t then x ∈ s and x ∈ t.
+          either use `rcases x_in_s_inter_t with ⟨x_in_s, x_in_t⟩` to split the "
+    rcases x_in_A_minus_boundary with ⟨x_in_a, x_not_in_frontier⟩
+    rw [frontier] at x_not_in_frontier
+    Hint "De Morgan's Laws ¬ (A ∧ B) ↔ (¬ A) ∨ (¬ B) might get you somewhere, do you have such a hypothesis that can be transformed in such a way?"
+    rw [Set.mem_diff, Classical.not_and_iff_or_not_not, not_not_mem] at x_not_in_frontier
+    Hint "one can split an ∨ with `rcases` to create two hopefully easier subgoals"
     rcases x_not_in_frontier with x_not_in_closure | x_in_interior
+    Hint "`absurd` proves a goal given ´¬ p´ and ´p´"
     · exact absurd (subset_closure x_in_a) x_not_in_closure
     · exact x_in_interior
 Conclusion "This theorem can be found in Mathlib as `self_diff_frontier`"

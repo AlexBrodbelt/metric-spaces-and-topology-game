@@ -1,4 +1,4 @@
-import Game.Levels.HammingWorld.L01_HammingDistance
+import Game.Levels.HammingWorld.L01_HammingDist
 
 World "HammingWorld"
 Title "Hamming World"

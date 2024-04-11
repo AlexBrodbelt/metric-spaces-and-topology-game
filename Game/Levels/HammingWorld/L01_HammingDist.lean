@@ -19,7 +19,6 @@ open Finset Function
 def hammingDist_ (x y : ∀ i, β i) : ℕ :=
   (univ.filter fun i => x i ≠ y i).card
 
-
 #print prefix String
 
 def stringOne : Vector Char 11 := ⟨"Hello World".data, rfl⟩

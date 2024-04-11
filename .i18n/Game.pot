@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Mar 28 15:54:04 2024\n"
+"POT-Creation-Date: Thu Apr  4 18:00:11 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -83,19 +83,64 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: Game.Levels.MetricWorld.L03_LimitDfn
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
 msgid "Topology exercise"
 msgstr ""
 
-#: Game.Levels.MetricWorld.L03_LimitDfn
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
 msgid "Topology intro"
 msgstr ""
 
-#: Game.Levels.MetricWorld.L03_LimitDfn
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "To prove to sets are equal we use the axiom of extensionality `ext`, two sets $A$ and $B$ are equal if and only they have the same members"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "To prove iff statements, use `constructor` to reduce to proving each direction"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "Introduce the assumption into the local context by `intro`"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "To prove by contradiction we use the tactic `by_contra h` where `h` takes the goal as a new assumption."
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "When we have to contradicting hypotheses we can use `absurd`"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "Because a ∖ b = a ∩ bᶜ, if x ∈ a ∖ b then x ∈ a ∩ bᶜ. By definition, if x ∈ s ∩ t then x ∈ s and x ∈ t.\n"
+"either use `rcases x_in_s_inter_t with ⟨x_in_s, x_in_t⟩` to split"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "De Morgan's laws"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "This theorem can be found in Mathlib as `self_diff_frontier`"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid ""
+msgstr ""
+
+#: Game.Levels.MetricWorld.L04_LimitDfn
+msgid "Topology exercise"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L04_LimitDfn
+msgid "Topology intro"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L04_LimitDfn
 msgid "some hint here"
 msgstr ""
 
-#: Game.Levels.MetricWorld.L03_LimitDfn
+#: Game.Levels.MetricWorld.L04_LimitDfn
 msgid "This last message appears if the level is solved."
 msgstr ""
 
@@ -106,6 +151,20 @@ msgstr ""
 #: Game.Levels.MetricWorld
 msgid "\n"
 "This introduction is shown before one enters level 1 of the demo world. Use markdown.\n"
+""
+msgstr ""
+
+#: Game.Levels.HammingWorld.L01_HammingDist
+msgid "Hamming distance"
+msgstr ""
+
+#: Game.Levels.HammingWorld
+msgid "Hamming World"
+msgstr ""
+
+#: Game.Levels.HammingWorld
+msgid "\n"
+"This is a world where we study the Hamming Distance and play around with interesting properties it has\n"
 ""
 msgstr ""
 
