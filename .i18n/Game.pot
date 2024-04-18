@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Apr  4 18:00:11 2024\n"
+"POT-Creation-Date: Tue Apr  9 11:54:54 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -83,52 +83,7 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
-msgid "Topology exercise"
-msgstr ""
-
-#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
-msgid "Topology intro"
-msgstr ""
-
-#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
-msgid "To prove to sets are equal we use the axiom of extensionality `ext`, two sets $A$ and $B$ are equal if and only they have the same members"
-msgstr ""
-
-#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
-msgid "To prove iff statements, use `constructor` to reduce to proving each direction"
-msgstr ""
-
-#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
-msgid "Introduce the assumption into the local context by `intro`"
-msgstr ""
-
-#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
-msgid "To prove by contradiction we use the tactic `by_contra h` where `h` takes the goal as a new assumption."
-msgstr ""
-
-#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
-msgid "When we have to contradicting hypotheses we can use `absurd`"
-msgstr ""
-
-#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
-msgid "Because a ∖ b = a ∩ bᶜ, if x ∈ a ∖ b then x ∈ a ∩ bᶜ. By definition, if x ∈ s ∩ t then x ∈ s and x ∈ t.\n"
-"either use `rcases x_in_s_inter_t with ⟨x_in_s, x_in_t⟩` to split"
-msgstr ""
-
-#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
-msgid "De Morgan's laws"
-msgstr ""
-
-#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
-msgid "This theorem can be found in Mathlib as `self_diff_frontier`"
-msgstr ""
-
-#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
-msgid ""
-msgstr ""
-
-#: Game.Levels.MetricWorld.L04_LimitDfn
+#: Game.Levels.MetricWorld.L03_LimitDfn
 msgid "Topology exercise"
 msgstr ""
 
