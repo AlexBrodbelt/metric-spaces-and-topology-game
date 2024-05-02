@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Tue Apr  9 11:54:54 2024\n"
+"POT-Creation-Date: Thu May  2 14:39:12 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -72,18 +72,87 @@ msgid "Topology intro"
 msgstr ""
 
 #: Game.Levels.MetricWorld.L02_ClosedBallClosed
-msgid "some hint here"
+msgid "A set $S$ is open iff ∀ a ∈ S ∃ ε > 0 such that Ball a ε ⊆ S"
 msgstr ""
 
 #: Game.Levels.MetricWorld.L02_ClosedBallClosed
-msgid "this last message appears if the level is solved."
+msgid "try `dsimp at h` to definitionally simplify the hypothesis which states a is in S, it looks a bit unwieldy otherwise..."
+msgstr ""
+
+#: Game.Levels.MetricWorld.L02_ClosedBallClosed
+msgid "what choice of ε can you provide such that ball a ε ⊆ S ?"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L02_ClosedBallClosed
+msgid "Now we have to prove that if b ∈ ball a ε then b ∈ S"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L02_ClosedBallClosed
+msgid "unfold the definition of b ∈ ball"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L02_ClosedBallClosed
+msgid "You have proved S is open! Well done!"
 msgstr ""
 
 #: Game.Levels.MetricWorld.L02_ClosedBallClosed
 msgid ""
 msgstr ""
 
-#: Game.Levels.MetricWorld.L03_LimitDfn
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "Topology exercise"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "Topology intro"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "To prove to sets are equal we use the axiom of extensionality `ext`, two sets $A$ and $B$ are equal if and only they have the same members"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "To prove iff statements, use `constructor` to reduce to proving each direction"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "Introduce the assumption into the local context by `intro`"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "To prove by contradiction we use the tactic `by_contra h` where `h` takes the goal as a new assumption."
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "When we have to contradicting hypotheses we can use `absurd`"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "Because a ∖ b = a ∩ bᶜ, if x ∈ a ∖ b then x ∈ a ∩ bᶜ. By definition, if x ∈ s ∩ t then x ∈ s and x ∈ t.\n"
+"either use `rcases x_in_s_inter_t with ⟨x_in_s, x_in_t⟩` to split the "
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "De Morgan's Laws ¬ (A ∧ B) ↔ (¬ A) ∨ (¬ B) might get you somewhere, do you have such a hypothesis that can be transformed in such a way?"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "one can split an ∨ with `rcases` to create two hopefully easier subgoals"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "`absurd` proves a goal given ´¬ p´ and ´p´"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "This theorem can be found in Mathlib as `self_diff_frontier`"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid ""
+msgstr ""
+
+#: Game.Levels.MetricWorld.L04_LimitDfn
 msgid "Topology exercise"
 msgstr ""
 

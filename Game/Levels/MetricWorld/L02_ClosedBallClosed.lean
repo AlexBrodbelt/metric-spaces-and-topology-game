@@ -25,15 +25,22 @@ Statement :
   dsimp at ainS
   Hint "what choice of ε can you provide such that ball a ε ⊆ S ?"
   use (dist a c - r) / 2
+  -- TODO other choices work, which wouldn't trigger the hints,
+  -- maybe hint for this specific value
   constructor
   -- · apply half_pos;
   linarith
   Hint "Now we have to prove that if b ∈ ball a ε then b ∈ S"
+  -- TODO the user would have used "intro" before, but not in the
+  -- context of showing something is a subset
+  -- explicit hint here too mb
   intro b binB; dsimp
   Hint "unfold the definition of b ∈ ball"
   rw [Metric.ball] at binB; dsimp at binB
   have h₀ : - (dist a c - r) / 2 < - dist b a := by linarith [binB]
   have h₁ : dist a c > r + (dist a c - r) / 2 := by linarith
+  -- REVISIT TODO I'm not sure calc is possible in lean games,
+  -- I'll get confirmation on this
   calc
     r = (r + (dist a c - r) / 2)  + -(dist a c - r) / 2 := by ring
     _ < dist a c + - dist b a := by
@@ -51,7 +58,7 @@ Conclusion "You have proved S is open! Well done!"
 NewTactic rw rfl exact linarith ring apply dsimp intro use
 
 NewTheorem gt_iff_lt Metric.isOpen_iff add_lt_add sub_le_iff_le_add add_comm dist_comm
-NewDefinition Metric.Ball
+NewDefinition Metric.Ball dist_triangle
 
 
 /- documentation for tendsto_atTop -/
