@@ -31,6 +31,4 @@ def stringTwo : Vector Char 11 :=  ⟨"ByeByeWorld".data, rfl⟩
 
 -- lemma nonneg_hammingDist : hammingDist
 
--- inductive Operation where
---   | Done | Substitution | Deletion | Insertion
---   deriving Repr, BEq
+

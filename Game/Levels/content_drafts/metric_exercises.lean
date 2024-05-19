@@ -112,6 +112,38 @@ lemma question_2 {x : Type*} [TopologicalSpace x] {a : Set x}: interior a = a \ 
 lemma question_2_ {x : Type*} [TopologicalSpace x] {a : Set x}: interior a = a \ (frontier a) := by
   rw [self_diff_frontier]
 
+lemma mem_union_ {ι : Type*} {s : ι → Set X} (x_in_union : x ∈ ⋃ i, s i) :  ∃ j, x ∈ s j := by
+  apply mem_iUnion.mp x_in_union
+
+lemma topology_closed_under_unions { X ι : Type*} [MetricSpace X]  {s : ι → Set X} (hs : ∀ i, IsOpen (s i)) : IsOpen (⋃ i, s i) := by
+  rw [Metric.isOpen_iff]
+  intro x x_in_union
+  rw [mem_iUnion] at x_in_union
+  rcases x_in_union with ⟨j, x_in_s_j⟩
+  specialize hs j
+  rw [Metric.isOpen_iff] at hs
+  specialize hs x x_in_s_j
+  rcases hs with ⟨ε, εpos, ball_sub⟩
+  use ε
+  constructor
+  · apply εpos
+  · intro y y_in_ball
+    apply subset_iUnion s j
+    apply ball_sub
+    apply y_in_ball
+
+lemma topology_closed_under_interesection 
+
+lemma topology_closed_under_finite_intersections {X ι : Type* }[MetricSpace X] [Fintype ι] {s : ι → Set X} (hs : ∀ i, IsOpen (s i)) : IsOpen (⋂ i, s i) := by
+  rw [Metric.isOpen_iff]
+  intro x x_in_intersection
+  rw [mem_iInter] at x_in_intersection
+  sorry
+  -- rcases x_in_union with ⟨j, x_in_s_j⟩
+  -- apply forall_range_iff.2 x_in_intersection
+
+
+
 
 
 

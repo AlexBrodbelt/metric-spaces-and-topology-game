@@ -39,11 +39,13 @@ Statement {A : Set X} :  interior A = A \ (frontier A) := by
           either use `rcases x_in_s_inter_t with ⟨x_in_s, x_in_t⟩` to split the "
     rcases x_in_A_minus_boundary with ⟨x_in_a, x_not_in_frontier⟩
     rw [frontier] at x_not_in_frontier
-    Hint "De Morgan's Laws ¬ (A ∧ B) ↔ (¬ A) ∨ (¬ B) might get you somewhere, do you have such a hypothesis that can be transformed in such a way?"
-    rw [Set.mem_diff, Classical.not_and_iff_or_not_not, not_not_mem] at x_not_in_frontier
+    Hint "Set difference is implicitly an intersection:  x ∈ a  b ↔ x ∈ a  and x ∈ bᶜ"
+    rw [Set.mem_diff] at x_not_in_frontier
+    Hint "One of De Morgan's Laws states ¬ (A ∧ B) ↔ (¬ A) ∨ (¬ B)... This might get you somewhere (´not_and_or` is the name this law has in Mathlib)"
+    rw [not_and_or, not_not_mem] at x_not_in_frontier
     Hint "one can split an ∨ with `rcases` to create two hopefully easier subgoals"
     rcases x_not_in_frontier with x_not_in_closure | x_in_interior
-    Hint "`absurd` proves a goal given ´¬ p´ and ´p´"
+    Hint "`absurd` proves a goal given ´p´ and ´¬ p´ (in that order) "
     · exact absurd (subset_closure x_in_a) x_not_in_closure
     · exact x_in_interior
 Conclusion "This theorem can be found in Mathlib as `self_diff_frontier`"
@@ -52,7 +54,7 @@ Conclusion "This theorem can be found in Mathlib as `self_diff_frontier`"
 
 NewTactic rw rfl exact linarith ring apply dsimp intro use rcases by_contra absurd trivial constructor
 
-NewTheorem Set.mem_diff Classical.not_and_iff_or_not_not Set.not_not_mem interior_subset
+NewTheorem Set.mem_diff not_and_or Set.not_not_mem interior_subset
 NewDefinition Metric.Ball
 
 

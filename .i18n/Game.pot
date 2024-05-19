@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu May  2 14:39:12 2024\n"
+"POT-Creation-Date: Sun May 19 12:08:04 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -133,7 +133,11 @@ msgid "Because a ∖ b = a ∩ bᶜ, if x ∈ a ∖ b then x ∈ a ∩ bᶜ. By 
 msgstr ""
 
 #: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
-msgid "De Morgan's Laws ¬ (A ∧ B) ↔ (¬ A) ∨ (¬ B) might get you somewhere, do you have such a hypothesis that can be transformed in such a way?"
+msgid "Set difference is implicitly an intersection:  x ∈ a  b ↔ x ∈ a  and x ∈ bᶜ"
+msgstr ""
+
+#: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
+msgid "One of De Morgan's Laws states ¬ (A ∧ B) ↔ (¬ A) ∨ (¬ B)... This might get you somewhere (´not_and_or` is the name this law has in Mathlib)"
 msgstr ""
 
 #: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
@@ -141,7 +145,7 @@ msgid "one can split an ∨ with `rcases` to create two hopefully easier subgoal
 msgstr ""
 
 #: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
-msgid "`absurd` proves a goal given ´¬ p´ and ´p´"
+msgid "`absurd` proves a goal given ´p´ and ´¬ p´ (in that order) "
 msgstr ""
 
 #: Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
@@ -189,6 +193,40 @@ msgstr ""
 #: Game.Levels.HammingWorld
 msgid "\n"
 "This is a world where we study the Hamming Distance and play around with interesting properties it has\n"
+""
+msgstr ""
+
+#: Game.Levels.TopologyWorld.L01_OpenClosedUnderUnion
+msgid "Topology exercise"
+msgstr ""
+
+#: Game.Levels.TopologyWorld.L01_OpenClosedUnderUnion
+msgid "Topology intro"
+msgstr ""
+
+#: Game.Levels.TopologyWorld.L01_OpenClosedUnderUnion
+msgid "if $x$ belongs to the union then it must lie in one of the sets $s j$ for some j ∈ ι"
+msgstr ""
+
+#: Game.Levels.TopologyWorld.L01_OpenClosedUnderUnion
+msgid "use ´rcases´ to instantiate the set $s j$ to which $x$ belongs to"
+msgstr ""
+
+#: Game.Levels.TopologyWorld.L01_OpenClosedUnderUnion
+msgid "We need to prove Metric.ball x ε ⊆ s j ⊆ ⋃ i, s i - Can you do this ?"
+msgstr ""
+
+#: Game.Levels.TopologyWorld.L01_OpenClosedUnderUnion
+msgid "We go 'backwards' s j ⊆ ⋃ i, s i by using ´subset_iUnion s j´"
+msgstr ""
+
+#: Game.Levels.TopologyWorld
+msgid "Topology World"
+msgstr ""
+
+#: Game.Levels.TopologyWorld
+msgid "\n"
+"This introduction is shown before one enters level 1 of the demo world. Use markdown.\n"
 ""
 msgstr ""
 

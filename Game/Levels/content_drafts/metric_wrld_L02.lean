@@ -10,10 +10,15 @@ open Topology Filter
 
 variable {X : Type*} [MetricSpace X] (a b c : X)
 
+variable (ε : ℝ)
+
+variable (N : ℕ)
+
 def sequenceLimit (sequence: ℕ → X) (limit: X) :=
-  ∀ε:ℝ, ε > 0 → (∃N:ℕ, ∀n:ℕ, n>N → (dist (sequence n) limit) < ε)
+  ∀ ε > 0, ∃N, ∀n > N, (dist (sequence n) limit) < ε
 
-
+-- def ConvergesTo (s : ℕ → ℝ) (a : ℝ) :=
+--   ∀ ε > 0, ∃ N, ∀ n ≥ N, |s n - a| < ε
 
 lemma max_plus_one_greater_right (a b: ℕ): max a b + 1 > b := calc
   max a b + 1 > max a b := by linarith
@@ -56,3 +61,6 @@ lemma uniqueness_of_limit (sequence: ℕ → X) (x₁ x₂: X):
       ring
 
   exact LT.lt.false contrad
+
+
+theorem BolzanoWeierstrassTheorem {S : Set X} : Bornology.IsBounded S → ∃ x : S, ∃ xₙ : ℕ → S , sequenceLimit xₙ x := by sorry
