@@ -193,6 +193,19 @@ lemma if_preimage_of_open_is_open_then_continuous  {X Y : Type* }[MetricSpace X]
     apply ball_subset_of_preimage
     apply hx₀
 
+-- lemma if_closed_then_every_convergent_sequence_converges {X : Type* } [MetricSpace X] {s : Set X} (hs : IsClosed s) : (∀ ⦃x : ℕ → X⦄, (∀ n, x n ∈ s), ∃ a ∈ X, ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, dist (x n) a < ε) → a ∈ s := by sorry
+
+lemma heine_borel_mp {s : Set ℝ} [MetricSpace ℝ ] : IsSeqCompact s → (IsClosed s) ∧ (Bornology.IsBounded s) := by
+  intro s_is_sequentially_compact
+  constructor
+  · sorry
+  · sorry
+
+lemma if_compact_then_sequentially_compact {s : Set X} (hs : IsCompact s) : IsSeqCompact s := by
+  intro x x_in_s
+  rw [isCompact_iff_finite_subcover] at hs
+  sorry
+
 
 example (hr : 0 ≤ r) : a ∈ Metric.closedBall a r :=
   Metric.mem_closedBall_self hr
@@ -210,9 +223,39 @@ example {s : Set X} (hs : IsClosed s) {u : ℕ → X} (hu : Tendsto u atTop (�
 example {s : Set X} : a ∈ closure s ↔ ∀ ε > 0, ∃ b ∈ s, a ∈ Metric.ball b ε :=
   Metric.mem_closure_iff
 
-example {u : ℕ → X} (hu : Tendsto u atTop (𝓝 a)) {s : Set X} (hs : ∀ n, u n ∈ s) :
-    a ∈ closure s :=
-  sorry
+lemma helper {s : Set X} : IsOpen (closure s)ᶜ := by
+  apply isOpen_compl_iff.mpr
+  apply isClosed_closure
+
+
+lemma converging_sequence_in_closure_of_s {u : ℕ → X} (hu : ∀ ε > 0, ∃ N, ∀ n ≥ N, dist (u n) a < ε) {s : Set X} (hs : ∀ n, u n ∈ s) :
+    a ∈ closure s := by
+  by_contra a_not_in_closure
+  rw [← mem_compl_iff] at a_not_in_closure
+  have h : IsOpen (closure s)ᶜ := isOpen_compl_iff.mpr isClosed_closure
+  rw [Metric.isOpen_iff] at h
+  specialize h a a_not_in_closure
+  rcases h with ⟨ε, εpos, ball_subset_closure_compl⟩
+  specialize hu ε εpos
+  rcases hu with ⟨N, u_n_in_εball⟩
+  specialize u_n_in_εball N (le_refl N)
+  have u_N_not_in_closure : (u N) ∈ (closure s)ᶜ := by apply ball_subset_closure_compl u_n_in_εball
+  specialize hs N
+  have u_N_in_closure : (u N) ∈ closure s := by apply subset_closure hs
+  absurd u_N_not_in_closure u_N_in_closure
+  trivial
+
+theorem isClosed_of_closure_subset_ {s : Set X} (h : closure s ⊆ s) : IsClosed s := by
+  rw [subset_closure.antisymm h]; exact isClosed_closure
+
+lemma closed_iff_eq_closure {s : Set X} : IsClosed s ↔ s = closure s := by
+  constructor
+  · intro s_is_closed
+    rw [IsClosed.closure_eq s_is_closed]
+  · intro s_eq_closure_s
+    sorry
+
+
 
 example {x : X} {s : Set X} : s ∈ 𝓝 x ↔ ∃ ε > 0, Metric.ball x ε ⊆ s :=
   Metric.nhds_basis_ball.mem_iff
