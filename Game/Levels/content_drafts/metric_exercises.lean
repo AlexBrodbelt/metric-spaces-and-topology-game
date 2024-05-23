@@ -4,8 +4,7 @@ import Mathlib.Topology.Instances.Real
 import Mathlib.Analysis.NormedSpace.BanachSteinhaus
 import Mathlib.Data.Set.Basic
 
-open Set Filter
-open Topology Filter
+open Set Filter Topology
 
 variable {X : Type*} [MetricSpace X] (a b c : X)
 
@@ -126,29 +125,74 @@ lemma topology_closed_under_unions { X ι : Type*} [MetricSpace X]  {s : ι → 
   rcases hs with ⟨ε, εpos, ball_sub⟩
   use ε
   constructor
-  · apply εpos
+  · exact εpos
   · intro y y_in_ball
     apply subset_iUnion s j
     apply ball_sub
     apply y_in_ball
 
-lemma topology_closed_under_interesection 
+lemma topology_closed_under_intersection  {X : Type*} {s t : Set X }[MetricSpace X] (hs : IsOpen s) (ht : IsOpen t) : IsOpen (s ∩ t) := by
+  rw [Metric.isOpen_iff] at *
+  rintro x ⟨x_in_s, x_in_t⟩
+  rcases hs x x_in_s with ⟨ε₁, ε₁pos, ball_subset_of_s⟩
+  rcases ht x x_in_t with ⟨ε₂, ε₂pos, ball_subset_of_t⟩
+  use min ε₁ ε₂
+  constructor
+  · rw [← min_self 0]
+    exact min_lt_min ε₁pos ε₂pos
+  · intro y y_in_ball
+    constructor
+    · apply ball_subset_of_s
+      apply Metric.ball_subset_ball
+      apply min_le_left ε₁ ε₂
+      apply y_in_ball
+    · apply ball_subset_of_t
+      apply Metric.ball_subset_ball
+      apply min_le_right ε₁ ε₂
+      apply y_in_ball
 
-lemma topology_closed_under_finite_intersections {X ι : Type* }[MetricSpace X] [Fintype ι] {s : ι → Set X} (hs : ∀ i, IsOpen (s i)) : IsOpen (⋂ i, s i) := by
-  rw [Metric.isOpen_iff]
-  intro x x_in_intersection
-  rw [mem_iInter] at x_in_intersection
-  sorry
-  -- rcases x_in_union with ⟨j, x_in_s_j⟩
-  -- apply forall_range_iff.2 x_in_intersection
+lemma topology_closed_under_finite_intersections {X ι : Type* }[MetricSpace X] [Finite ι] {s : ι → Set X} (hs : ∀ i, IsOpen (s i)) : IsOpen (⋂ i, s i) := by
+  rw [← Set.biInter_univ] --;rw [Metric.isOpen_iff]
+  apply Set.Finite.induction_to_univ (C := λ u ↦ IsOpen (⋂ i ∈ u, s i)) ∅
+  · simp_rw [mem_empty_iff_false, iInter_of_empty]
+    rw [iInter_univ]
+    apply isOpen_univ
+    -- [mem_empty_iff_false, , iInter_univ, isOpen_univ]
+  · intro S S_neq_univ inter_is_open
+    sorry
 
+lemma if_continuous_then_preimage_of_open_is_open {X Y : Type* }[MetricSpace X] [MetricSpace Y] {f : X → Y} (hf : ∀ (x₀ : X), ∀ ε > 0, ∃ δ > 0, ∀ (x : X), dist x x₀ < δ → dist (f x) (f x₀) < ε) {s : Set Y } (hs : IsOpen s) : IsOpen (f ⁻¹' s) := by
+  rw [Metric.isOpen_iff] at *
+  intro x x_in_preimage
+  specialize hs (f x) x_in_preimage
+  rcases hs with ⟨ε, εpos, ball_subset_of_s⟩
+  specialize hf x ε εpos
+  rcases hf with ⟨δ, δpos, h⟩
+  use δ
+  constructor
+  · exact δpos
+  · intro y y_in_ball
+    apply ball_subset_of_s
+    specialize h y y_in_ball
+    exact h
 
+-- lemma ball_is_open { X : Type* } [ MetricSpace X ] {x : X} : IsOpen (Metric.ball x ε) := by
+--   exact
 
+lemma if_preimage_of_open_is_open_then_continuous  {X Y : Type* }[MetricSpace X] [MetricSpace Y] {f : X → Y} (hf : ∀ s, IsOpen s → IsOpen (f ⁻¹' s)) : ∀ (x₀ : X), ∀ ε > 0, ∃ δ > 0, ∀ (x : X), dist x x₀ < δ → dist (f x) (f x₀) < ε := by
+  intro x ε εpos
+  specialize hf (Metric.ball (f x) ε) Metric.isOpen_ball -- proof for Metric.ball is open
+  rw [Metric.isOpen_iff] at hf
+  -- have : x ∈ f ⁻¹' Metric.ball (f x) ε := by apply (Metric.mem_ball_self εpos)
+  specialize hf x (Metric.mem_ball_self εpos)
+  rcases hf with ⟨δ, δpos, ball_subset_of_preimage⟩
+  use δ
+  constructor
+  · exact δpos
+  · intro x₀ hx₀
+    apply ball_subset_of_preimage
+    apply hx₀
 
-
-
-example (hr : 0 < r) : a ∈ Metric.ball a r :=
-  Metric.mem_ball_self hr
 
 example (hr : 0 ≤ r) : a ∈ Metric.closedBall a r :=
   Metric.mem_closedBall_self hr
