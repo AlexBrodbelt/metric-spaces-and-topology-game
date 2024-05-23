@@ -228,8 +228,9 @@ lemma helper {s : Set X} : IsOpen (closure s)ᶜ := by
   apply isClosed_closure
 
 
-lemma converging_sequence_in_closure_of_s {u : ℕ → X} (hu : ∀ ε > 0, ∃ N, ∀ n ≥ N, dist (u n) a < ε) {s : Set X} (hs : ∀ n, u n ∈ s) :
-    a ∈ closure s := by
+lemma converging_sequence_in_closure_of_s {u : ℕ → X} (s_is_closed : IsClosed s )(hu : ∀ ε > 0, ∃ N, ∀ n ≥ N, dist (u n) a < ε) {s : Set X} (hs : ∀ n, u n ∈ s) :
+    a ∈ s := by
+  apply closure_subset_iff_isClosed.mpr s_is_closed
   by_contra a_not_in_closure
   rw [← mem_compl_iff] at a_not_in_closure
   have h : IsOpen (closure s)ᶜ := isOpen_compl_iff.mpr isClosed_closure
@@ -244,6 +245,34 @@ lemma converging_sequence_in_closure_of_s {u : ℕ → X} (hu : ∀ ε > 0, ∃ 
   have u_N_in_closure : (u N) ∈ closure s := by apply subset_closure hs
   absurd u_N_not_in_closure u_N_in_closure
   trivial
+
+lemma closed_iff_every_convergent_sequence_converges {s : Set X }: ∀ u : ℕ → s, (∃ a : s, ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, dist (u n) a < ε) → IsClosed s := by
+  intro u u_converges_in_s
+  rw [← isOpen_compl_iff, Metric.isOpen_iff]
+  intro x x_in_s_compl
+  by_contra h
+  push_neg at h
+  -- rw [Set.not_subset] at h
+  let r : ℕ → ℝ := fun n ↦ (1 / (n + 1))
+  have rpos : ∀ n : ℕ, r n > 0 := by sorry--intro n; dsimp; rw [one_div, gt_iff_lt, inv_pos];
+  -- let y : ℕ → s := fun n ↦ rcases
+  have : ∀ n : ℕ, ∃ y, y ∈ s ∧ ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, dist y x < ε := by
+    intro n
+    specialize h (r n) (rpos n)
+    rw [Set.not_subset] at h
+    rcases h with ⟨y, y_in_ball, y_in_s⟩
+    rw [not_mem_compl_iff] at y_in_s
+    use y
+    constructor
+    · exact y_in_s
+    · intro ε εpos
+      use ⌈(1 / ε)⌉₊
+      intro m m_geq_ceil
+      simp at y_in_ball
+      sorry --apply lt_trans (b := (n + 1)⁻¹)
+  sorry
+
+
 
 theorem isClosed_of_closure_subset_ {s : Set X} (h : closure s ⊆ s) : IsClosed s := by
   rw [subset_closure.antisymm h]; exact isClosed_closure
