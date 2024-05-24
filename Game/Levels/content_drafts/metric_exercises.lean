@@ -246,32 +246,30 @@ lemma converging_sequence_in_closure_of_s {u : ℕ → X} (s_is_closed : IsClose
   absurd u_N_not_in_closure u_N_in_closure
   trivial
 
-lemma closed_iff_every_convergent_sequence_converges {s : Set X }: ∀ u : ℕ → s, (∃ a : s, ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, dist (u n) a < ε) → IsClosed s := by
-  intro u u_converges_in_s
+lemma closed_iff_every_convergent_sequence_converges {s : Set X }: (∀ u : ℕ → s, (∃ a : s, ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, dist (u n) a < ε)) → IsClosed s := by
+  intro u_converges_in_s
   rw [← isOpen_compl_iff, Metric.isOpen_iff]
   intro x x_in_s_compl
   by_contra h
   push_neg at h
   -- rw [Set.not_subset] at h
   let r : ℕ → ℝ := fun n ↦ (1 / (n + 1))
-  have rpos : ∀ n : ℕ, r n > 0 := by sorry--intro n; dsimp; rw [one_div, gt_iff_lt, inv_pos];
+  have rpos : ∀ n : ℕ, r n > 0 := by intro n; simp_rw [one_div, gt_iff_lt, inv_pos]; sorry
   -- let y : ℕ → s := fun n ↦ rcases
-  have : ∀ n : ℕ, ∃ y, y ∈ s ∧ ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, dist y x < ε := by
-    intro n
-    specialize h (r n) (rpos n)
+  have h₀ : ∀ ε > 0, ∃ y ∈ Metric.ball x ε, y ∈ s := by
+    intro ε εpos
+    specialize h ε εpos
     rw [Set.not_subset] at h
-    rcases h with ⟨y, y_in_ball, y_in_s⟩
+    rcases h with ⟨y, y_in_s⟩
     rw [not_mem_compl_iff] at y_in_s
-    use y
-    constructor
-    · exact y_in_s
-    · intro ε εpos
-      use ⌈(1 / ε)⌉₊
-      intro m m_geq_ceil
-      simp at y_in_ball
-      sorry --apply lt_trans (b := (n + 1)⁻¹)
+    exact ⟨y, y_in_s⟩
+  -- let ⟨y : ℕ → s, h₁ : ∀ n, (y n) ∈ Metric.ball x (r n) , h₂ : ∀ n, (y n) ∈ s⟩ := fun n => (h₀ (r n) (rpos n))
   sorry
 
+variable (α : Type) (p q : α → Prop)
+example (h : ∃ x, p x ∧ q x) : ∃ x, q x ∧ p x :=
+  let ⟨w, hpw, hqw⟩ := h
+  ⟨w, hqw, hpw⟩
 
 
 theorem isClosed_of_closure_subset_ {s : Set X} (h : closure s ⊆ s) : IsClosed s := by
