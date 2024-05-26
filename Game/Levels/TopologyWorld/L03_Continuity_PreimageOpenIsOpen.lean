@@ -8,7 +8,7 @@ import Game.Metadata
 World "TopologyWorld"
 Level 3
 
-Title "Topology exercise"
+Title "The preimage of an open set for a given continuous map is again an open set"
 
 Introduction "Topology intro"
 

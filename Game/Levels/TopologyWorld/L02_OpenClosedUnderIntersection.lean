@@ -8,7 +8,7 @@ import Game.Metadata
 World "TopologyWorld"
 Level 2
 
-Title "Topology exercise"
+Title "Topology is closed under pairwise intersection"
 
 Introduction "Topology intro"
 

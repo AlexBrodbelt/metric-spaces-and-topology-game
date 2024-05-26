@@ -228,8 +228,7 @@ lemma helper {s : Set X} : IsOpen (closure s)ᶜ := by
   apply isClosed_closure
 
 
-lemma converging_sequence_in_closure_of_s {u : ℕ → X} (s_is_closed : IsClosed s )(hu : ∀ ε > 0, ∃ N, ∀ n ≥ N, dist (u n) a < ε) {s : Set X} (hs : ∀ n, u n ∈ s) :
-    a ∈ s := by
+lemma converging_sequence_in_closure_of_s {s : Set X} {u : ℕ → X} {a : X} (s_is_closed : IsClosed s )(hu : ∀ ε > 0, ∃ N, ∀ n ≥ N, dist (u n) a < ε) (hs : ∀ n, u n ∈ s) : a ∈ s := by
   apply closure_subset_iff_isClosed.mpr s_is_closed
   by_contra a_not_in_closure
   rw [← mem_compl_iff] at a_not_in_closure
@@ -265,6 +264,7 @@ lemma closed_iff_every_convergent_sequence_converges {s : Set X }: (∀ u : ℕ 
     exact ⟨y, y_in_s⟩
   -- let ⟨y : ℕ → s, h₁ : ∀ n, (y n) ∈ Metric.ball x (r n) , h₂ : ∀ n, (y n) ∈ s⟩ := fun n => (h₀ (r n) (rpos n))
   sorry
+
 
 variable (α : Type) (p q : α → Prop)
 example (h : ∃ x, p x ∧ q x) : ∃ x, q x ∧ p x :=

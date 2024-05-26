@@ -23,7 +23,7 @@ Statement :
   intro a ainS
   Hint "try `dsimp at h` to definitionally simplify the hypothesis which states a is in S, it looks a bit unwieldy otherwise..."
   dsimp at ainS
-  Hint "what choice of ε can you provide such that ball a ε ⊆ S ?"
+  Hint "what choice of ε can you provide such that ball a ε ⊆ S ? There are many possible choices if you are confident try your pick, otherwise I suggest using '(dist a c - r) / 2'"
   use (dist a c - r) / 2
   -- TODO other choices work, which wouldn't trigger the hints,
   -- maybe hint for this specific value

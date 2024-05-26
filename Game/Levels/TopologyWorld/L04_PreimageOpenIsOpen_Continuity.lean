@@ -8,7 +8,7 @@ import Game.Metadata
 World "TopologyWorld"
 Level 4
 
-Title "Topology exercise"
+Title ""
 
 Introduction "Topology intro"
 

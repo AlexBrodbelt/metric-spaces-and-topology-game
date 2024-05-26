@@ -8,7 +8,7 @@ import Game.Metadata
 World "TopologyWorld"
 Level 1
 
-Title "Topology exercise"
+Title "Topology of a metric space is closed under arbitrary union of elements in the topology - the arbitrary union of open sets is itself an open set"
 
 Introduction "Topology intro"
 
