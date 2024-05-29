@@ -12,8 +12,8 @@ Title "Topology exercise"
 
 Introduction "Topology intro"
 
-open Set Filter
-open Topology Filter
+open Set Topology Filter
+
 
 variable {X : Type*} [MetricSpace X] (A B C : X)
 

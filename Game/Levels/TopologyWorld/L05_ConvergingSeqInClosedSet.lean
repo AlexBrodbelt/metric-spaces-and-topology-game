@@ -13,7 +13,7 @@ Title "Converging sequence converges to element in the closure of the set"
 
 Introduction "Topology intro"
 
-open Set
+open Set Topology
 
 variable {X Y: Type*} [MetricSpace X] [MetricSpace Y]
 
@@ -36,4 +36,4 @@ Statement  {s : Set X} {u : ℕ → X} {a : X} (s_is_closed : IsClosed s )(hu : 
   absurd u_N_not_in_closure u_N_in_closure
   trivial
 
--- NewTheorem min_lt_min min_self Metric.ball_subset_ball
+NewTheorem isClosed_closure subset_closure

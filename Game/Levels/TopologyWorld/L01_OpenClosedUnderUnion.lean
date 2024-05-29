@@ -12,16 +12,17 @@ Title "Topology of a metric space is closed under arbitrary union of elements in
 
 Introduction "Topology intro"
 
-open Set
+open Set Topology
 
 variable {ι X : Type*} [MetricSpace X]
 
 variable {s : ι → Set X}
 
 Statement (hs : ∀ i, IsOpen (s i))  : IsOpen (⋃ i, s i) := by
+  Hint "expanding the definion of 'IsOpen' using 'rw [Metric.isOpen_iff]' is a good place to start"
   rw [Metric.isOpen_iff]
   intro x x_in_union
-  Hint "if $x$ belongs to the union then it must lie in one of the sets $s j$ for some j ∈ ι"
+  Hint "if $x$ belongs to the union then it must lie in one of the sets 'S j' for some $j \\in ι$"
   rw [mem_iUnion] at x_in_union
   Hint "use ´rcases´ to instantiate the set $s j$ to which $x$ belongs to"
   rcases x_in_union with ⟨j, x_in_s_j⟩
@@ -40,4 +41,4 @@ Statement (hs : ∀ i, IsOpen (s i))  : IsOpen (⋃ i, s i) := by
     apply y_in_ball
 
 
-NewTheorem Set.subset_iUnion
+NewTheorem Set.subset_iUnion Set.mem_iUnion

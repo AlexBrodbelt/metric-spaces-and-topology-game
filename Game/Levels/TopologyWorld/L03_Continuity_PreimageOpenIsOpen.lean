@@ -12,7 +12,7 @@ Title "The preimage of an open set for a given continuous map is again an open s
 
 Introduction "Topology intro"
 
-open Set
+open Set Topology
 
 variable {X Y: Type*} [MetricSpace X] [MetricSpace Y]
 

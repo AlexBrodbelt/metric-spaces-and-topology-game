@@ -12,7 +12,7 @@ Title ""
 
 Introduction "Topology intro"
 
-open Set
+open Set Topology
 
 variable {X Y: Type*} [MetricSpace X] [MetricSpace Y]
 
@@ -32,4 +32,4 @@ Statement  (hf : ∀ s, IsOpen s → IsOpen (f ⁻¹' s)) : ∀ (x₀ : X), ∀ 
     apply ball_subset_of_preimage
     apply hx₀
 
--- NewTheorem min_lt_min min_self Metric.ball_subset_ball
+NewTheorem Metric.isOpen_ball Metric.mem_ball_self

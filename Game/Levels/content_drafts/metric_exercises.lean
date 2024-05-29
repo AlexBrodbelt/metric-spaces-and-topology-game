@@ -227,8 +227,54 @@ lemma helper {s : Set X} : IsOpen (closure s)ᶜ := by
   apply isOpen_compl_iff.mpr
   apply isClosed_closure
 
+def sequenceLimit (sequence: ℕ → X) (limit: X) :=
+  ∀ ε > 0, ∃N, ∀n ≥ N, (dist (sequence n) limit) < ε
 
-lemma converging_sequence_in_closure_of_s {s : Set X} {u : ℕ → X} {a : X} (s_is_closed : IsClosed s )(hu : ∀ ε > 0, ∃ N, ∀ n ≥ N, dist (u n) a < ε) (hs : ∀ n, u n ∈ s) : a ∈ s := by
+-- def ConvergesTo (s : ℕ → ℝ) (a : ℝ) :=
+--   ∀ ε > 0, ∃ N, ∀ n ≥ N, |s n - a| < ε
+
+lemma max_plus_one_greater_right (a b: ℕ): max a b + 1 > b := calc
+  max a b + 1 > max a b := by linarith
+  _ ≥ b := by apply le_max_right
+
+lemma max_plus_one_greater_left (a b: ℕ): max a b + 1 > a := calc
+  max a b + 1 > max a b := by linarith
+  _ ≥ a := by apply le_max_left
+
+lemma uniqueness_of_limit (sequence: ℕ → X) (x₁ x₂: X):
+  (∀ ε > 0, ∃N, ∀n ≥ N, (dist (sequence n) x₁) < ε) ∧ (∀ ε > 0, ∃N, ∀n ≥ N, (dist (sequence n) x₂) < ε) → x₁ = x₂ := by
+  intro ⟨limit1, limit2⟩
+  apply zero_eq_dist.1
+  by_contra xs_differ
+  rw [← Ne.def] at xs_differ
+  symm at xs_differ
+  rw [← LE.le.gt_iff_ne dist_nonneg] at xs_differ
+
+  let ε := dist x₁ x₂ / 2
+  have ε_pos : ε > 0 := half_pos xs_differ
+  specialize limit1 ε ε_pos
+  specialize limit2 ε ε_pos
+  let ⟨N₁, limit1⟩ := limit1
+  let ⟨N₂, limit2⟩ := limit2
+
+  let n := max N₁ N₂
+  specialize limit1 n (le_max_left _ _)
+  specialize limit2 n (le_max_right _ _)
+
+  have contrad := calc
+    (dist x₁ x₂) ≤ ((dist x₁ (sequence n)) + (dist (sequence n) x₂)) :=
+      dist_triangle _ _ _
+    _ = ((dist (sequence n) x₁) + (dist (sequence n) x₂)) := by
+      rw [dist_comm]
+    _ < ε + (dist (sequence n) x₂) :=
+      add_lt_add_right limit1 (dist (sequence n) x₂)
+    _ < ε + ε := add_lt_add_left limit2 ε
+    _ = dist x₁ x₂ := by
+      ring
+
+  exact LT.lt.false contrad
+
+lemma if_closed_then_every_converging_sequence_converges_in_set {s : Set X} {u : ℕ → X} {a : X} (s_is_closed : IsClosed s )(hu : ∀ ε > 0, ∃ N, ∀ n ≥ N, dist (u n) a < ε) (hs : ∀ n, u n ∈ s) : a ∈ s := by
   apply closure_subset_iff_isClosed.mpr s_is_closed
   by_contra a_not_in_closure
   rw [← mem_compl_iff] at a_not_in_closure
@@ -245,31 +291,55 @@ lemma converging_sequence_in_closure_of_s {s : Set X} {u : ℕ → X} {a : X} (s
   absurd u_N_not_in_closure u_N_in_closure
   trivial
 
-lemma closed_iff_every_convergent_sequence_converges {s : Set X }: (∀ u : ℕ → s, (∃ a : s, ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, dist (u n) a < ε)) → IsClosed s := by
+
+
+lemma if_every_convergent_sequence_converges_in_set_then_closed {s : Set X }: (∀ u : ℕ → s, (∃ a : s, ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, dist (u n) a < ε)) → IsClosed s := by
   intro u_converges_in_s
   rw [← isOpen_compl_iff, Metric.isOpen_iff]
   intro x x_in_s_compl
   by_contra h
   push_neg at h
-  -- rw [Set.not_subset] at h
   let r : ℕ → ℝ := fun n ↦ (1 / (n + 1))
-  have rpos : ∀ n : ℕ, r n > 0 := by intro n; simp_rw [one_div, gt_iff_lt, inv_pos]; sorry
-  -- let y : ℕ → s := fun n ↦ rcases
-  have h₀ : ∀ ε > 0, ∃ y ∈ Metric.ball x ε, y ∈ s := by
-    intro ε εpos
-    specialize h ε εpos
+  have rpos : ∀ n : ℕ, r n > 0 := by intro n; simp_rw [one_div, gt_iff_lt, inv_pos]; linarith
+  have h₀ : ∀ n : ℕ, ∃ y : s, (y : X) ∈ Metric.ball x (r n) := by
+    intro n
+    specialize h (r n) (rpos n)
     rw [Set.not_subset] at h
-    rcases h with ⟨y, y_in_s⟩
+    obtain ⟨y , y_in_ball, y_in_s⟩ := h
     rw [not_mem_compl_iff] at y_in_s
-    exact ⟨y, y_in_s⟩
-  -- let ⟨y : ℕ → s, h₁ : ∀ n, (y n) ∈ Metric.ball x (r n) , h₂ : ∀ n, (y n) ∈ s⟩ := fun n => (h₀ (r n) (rpos n))
-  sorry
-
-
-variable (α : Type) (p q : α → Prop)
-example (h : ∃ x, p x ∧ q x) : ∃ x, q x ∧ p x :=
-  let ⟨w, hpw, hqw⟩ := h
-  ⟨w, hqw, hpw⟩
+    use ⟨y, y_in_s⟩
+  choose y hy₀ using h₀
+  specialize u_converges_in_s y
+  rcases u_converges_in_s with ⟨x', hy'⟩
+  dsimp [Metric.ball] at hy₀
+  have hy : ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, dist (↑(y n)) x < ε := by
+    intro ε ε_pos
+    rcases exists_nat_one_div_lt ε_pos with ⟨N, hN⟩
+    use N
+    intro n n_geq_N
+    specialize hy₀ n
+    calc dist (↑(y n)) x
+    _ < 1 / (↑n + 1) := hy₀
+    _ ≤ 1 / (↑N + 1) := by
+      apply one_div_le_one_div_of_le
+      · linarith
+      · apply add_le_add
+        rw [← ge_iff_le]
+        rw [← Nat.cast_id n, ← Nat.cast_id N] at n_geq_N
+        sorry--apply n_geq_N
+        apply le_refl
+    _ < ε := hN
+  have x_eq_x' : x = ↑x' := by
+    apply uniqueness_of_limit
+    constructor
+    · apply hy
+    · apply hy'
+  rw [mem_compl_iff] at x_in_s_compl
+  have x_in_s : x ∈ s := by
+    rw [x_eq_x']
+    sorry
+  absurd x_in_s_compl x_in_s
+  trivial
 
 
 theorem isClosed_of_closure_subset_ {s : Set X} (h : closure s ⊆ s) : IsClosed s := by

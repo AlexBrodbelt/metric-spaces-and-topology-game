@@ -7,9 +7,18 @@ import Game.Metadata
 World "MetricWorld"
 Level 2
 
-Title "Topology exercise"
+Title "Proving the closed ball is closed"
 
-Introduction "Topology intro"
+Introduction "# Transitioning to metric spaces
+An important property of a set in a metric space is openness, admittedly it is not obvious why this is an interesting property to study
+but eventually it will be closely related to convergence of sequences, continuity, sequential compactness, compactness and so forth.
+
+# Task:
+
+Your task is to prove that the closed ball is closed.
+To show $S$ is open, we must show that for an arbitrary element $ y \\in S,
+there exists a radius $r(y)$ depending (or not) on $y$ such that
+$B(y, r(y)) \\subseteq S$"
 
 open Set Filter
 open Topology Filter
@@ -23,7 +32,7 @@ Statement :
   intro a ainS
   Hint "try `dsimp at h` to definitionally simplify the hypothesis which states a is in S, it looks a bit unwieldy otherwise..."
   dsimp at ainS
-  Hint "what choice of ε can you provide such that ball a ε ⊆ S ? There are many possible choices if you are confident try your pick, otherwise I suggest using '(dist a c - r) / 2'"
+  Hint "what choice of ε can you provide such that ball a ε ⊆ S ? There are many possible choices, but if you are confident try your pick, otherwise I suggest using '(dist a c - r) / 2'"
   use (dist a c - r) / 2
   -- TODO other choices work, which wouldn't trigger the hints,
   -- maybe hint for this specific value

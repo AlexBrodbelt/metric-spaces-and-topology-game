@@ -12,7 +12,7 @@ Title "Topology is closed under pairwise intersection"
 
 Introduction "Topology intro"
 
-open Set
+open Set Topology
 
 variable {X : Type*} [MetricSpace X]
 
