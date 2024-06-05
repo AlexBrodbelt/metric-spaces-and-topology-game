@@ -292,7 +292,6 @@ lemma if_closed_then_every_converging_sequence_converges_in_set {s : Set X} {u :
   trivial
 
 
-
 lemma if_every_convergent_sequence_converges_in_set_then_closed {s : Set X }: (∀ u : ℕ → s, (∃ a : s, ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, dist (u n) a < ε)) → IsClosed s := by
   intro u_converges_in_s
   rw [← isOpen_compl_iff, Metric.isOpen_iff]
@@ -325,9 +324,10 @@ lemma if_every_convergent_sequence_converges_in_set_then_closed {s : Set X }: (�
       · linarith
       · apply add_le_add
         rw [← ge_iff_le]
-        rw [← Nat.cast_id n, ← Nat.cast_id N] at n_geq_N
-        sorry--apply n_geq_N
-        apply le_refl
+        · apply_fun ((↑) : ℕ → ℝ) at n_geq_N
+          apply n_geq_N
+          apply Nat.mono_cast
+        · apply le_refl
     _ < ε := hN
   have x_eq_x' : x = ↑x' := by
     apply uniqueness_of_limit
@@ -337,9 +337,10 @@ lemma if_every_convergent_sequence_converges_in_set_then_closed {s : Set X }: (�
   rw [mem_compl_iff] at x_in_s_compl
   have x_in_s : x ∈ s := by
     rw [x_eq_x']
-    sorry
-  absurd x_in_s_compl x_in_s
-  trivial
+    exact Subtype.mem x'
+  contradiction
+  -- absurd x_in_s_compl x_in_s
+  -- trivial
 
 
 theorem isClosed_of_closure_subset_ {s : Set X} (h : closure s ⊆ s) : IsClosed s := by
