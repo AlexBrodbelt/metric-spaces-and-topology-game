@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sun May 19 12:08:04 2024\n"
+"POT-Creation-Date: Wed Jun  5 14:40:14 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -64,11 +64,20 @@ msgid "The triangle inequality is a key part of many proofs around limits in Rea
 msgstr ""
 
 #: Game.Levels.MetricWorld.L02_ClosedBallClosed
-msgid "Topology exercise"
+msgid "Proving the closed ball is closed"
 msgstr ""
 
 #: Game.Levels.MetricWorld.L02_ClosedBallClosed
-msgid "Topology intro"
+msgid "# Transitioning to metric spaces\n"
+"An important property of a set in a metric space is openness, admittedly it is not obvious why this is an interesting property to study\n"
+"but eventually it will be closely related to convergence of sequences, continuity, sequential compactness, compactness and so forth.\n"
+"\n"
+"# Task:\n"
+"\n"
+"Your task is to prove that the closed ball is closed.\n"
+"To show $S$ is open, we must show that for an arbitrary element $ y \in S,\n"
+"there exists a radius $r(y)$ depending (or not) on $y$ such that\n"
+"$B(y, r(y)) \subseteq S$"
 msgstr ""
 
 #: Game.Levels.MetricWorld.L02_ClosedBallClosed
@@ -80,7 +89,7 @@ msgid "try `dsimp at h` to definitionally simplify the hypothesis which states a
 msgstr ""
 
 #: Game.Levels.MetricWorld.L02_ClosedBallClosed
-msgid "what choice of ε can you provide such that ball a ε ⊆ S ?"
+msgid "what choice of ε can you provide such that ball a ε ⊆ S ? There are many possible choices, but if you are confident try your pick, otherwise I suggest using '(dist a c - r) / 2'"
 msgstr ""
 
 #: Game.Levels.MetricWorld.L02_ClosedBallClosed
@@ -197,7 +206,7 @@ msgid "\n"
 msgstr ""
 
 #: Game.Levels.TopologyWorld.L01_OpenClosedUnderUnion
-msgid "Topology exercise"
+msgid "Topology of a metric space is closed under arbitrary union of elements in the topology - the arbitrary union of open sets is itself an open set"
 msgstr ""
 
 #: Game.Levels.TopologyWorld.L01_OpenClosedUnderUnion
@@ -205,7 +214,11 @@ msgid "Topology intro"
 msgstr ""
 
 #: Game.Levels.TopologyWorld.L01_OpenClosedUnderUnion
-msgid "if $x$ belongs to the union then it must lie in one of the sets $s j$ for some j ∈ ι"
+msgid "expanding the definion of 'IsOpen' using 'rw [Metric.isOpen_iff]' is a good place to start"
+msgstr ""
+
+#: Game.Levels.TopologyWorld.L01_OpenClosedUnderUnion
+msgid "if $x$ belongs to the union then it must lie in one of the sets 'S j' for some $j \in ι$"
 msgstr ""
 
 #: Game.Levels.TopologyWorld.L01_OpenClosedUnderUnion
@@ -217,7 +230,43 @@ msgid "We need to prove Metric.ball x ε ⊆ s j ⊆ ⋃ i, s i - Can you do thi
 msgstr ""
 
 #: Game.Levels.TopologyWorld.L01_OpenClosedUnderUnion
-msgid "We go 'backwards' s j ⊆ ⋃ i, s i by using ´subset_iUnion s j´"
+msgid "We go 'backwards' s j ⊆ ⋃ i, s i  - by using ´ apply subset_iUnion s j´. Observe we give ´s´ and ´j´ as parameters for the theorem"
+msgstr ""
+
+#: Game.Levels.TopologyWorld.L02_OpenClosedUnderIntersection
+msgid "Topology is closed under pairwise intersection"
+msgstr ""
+
+#: Game.Levels.TopologyWorld.L02_OpenClosedUnderIntersection
+msgid "Topology intro"
+msgstr ""
+
+#: Game.Levels.TopologyWorld.L02_OpenClosedUnderIntersection
+msgid "´rintro´ alongside with the anonymous constructor ´⟨ ⟩´ is very useful in destructuring the assumptions"
+msgstr ""
+
+#: Game.Levels.TopologyWorld.L03_Continuity_PreimageOpenIsOpen
+msgid "The preimage of an open set for a given continuous map is again an open set"
+msgstr ""
+
+#: Game.Levels.TopologyWorld.L03_Continuity_PreimageOpenIsOpen
+msgid "Topology intro"
+msgstr ""
+
+#: Game.Levels.TopologyWorld.L04_PreimageOpenIsOpen_Continuity
+msgid ""
+msgstr ""
+
+#: Game.Levels.TopologyWorld.L04_PreimageOpenIsOpen_Continuity
+msgid "Topology intro"
+msgstr ""
+
+#: Game.Levels.TopologyWorld.L05_ConvergingSeqInClosedSet
+msgid "Converging sequence converges to element in the closure of the set"
+msgstr ""
+
+#: Game.Levels.TopologyWorld.L05_ConvergingSeqInClosedSet
+msgid "Topology intro"
 msgstr ""
 
 #: Game.Levels.TopologyWorld

@@ -1,7 +1,8 @@
 import Game.Levels.MetricWorld.L01_TriIneq
-import Game.Levels.MetricWorld.L02_ClosedBallClosed
-import Game.Levels.MetricWorld.L03_IntEqSelfDiffFrontier
-import Game.Levels.MetricWorld.L04_LimitDfn
+import Game.Levels.MetricWorld.L02_OpenBallOpen
+import Game.Levels.MetricWorld.L03_ClosedBallClosed
+import Game.Levels.MetricWorld.L04_IntEqSelfDiffFrontier
+import Game.Levels.MetricWorld.L05_LimitDfn
 
 World "MetricWorld"
 Title "Metric World"
