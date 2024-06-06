@@ -6,7 +6,7 @@ import Mathlib.Data.Set.Basic
 import Game.Metadata
 
 World "MetricWorld"
-Level 3
+Level 4
 
 Title "Topology exercise"
 

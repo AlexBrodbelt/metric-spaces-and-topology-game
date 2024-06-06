@@ -5,7 +5,7 @@ import Mathlib.Analysis.NormedSpace.BanachSteinhaus
 import Game.Metadata
 
 World "MetricWorld"
-Level 4
+Level 5
 
 Title "Topology exercise"
 

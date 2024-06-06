@@ -5,7 +5,7 @@ import Mathlib.Analysis.NormedSpace.BanachSteinhaus
 import Game.Metadata
 
 World "MetricWorld"
-Level 2
+Level 3
 
 Title "Proving the closed ball is closed"
 
