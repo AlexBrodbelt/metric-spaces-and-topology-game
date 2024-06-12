@@ -20,8 +20,7 @@ To show $S$ is open, we must show that for an arbitrary element $ y \\in S,
 there exists a radius $r(y)$ depending (or not) on $y$ such that
 $B(y, r(y)) \\subseteq S$"
 
-open Set Filter
-open Topology Filter
+open Set Filter Topology
 
 variable {X : Type*} [MetricSpace X] (a b c : X)
 

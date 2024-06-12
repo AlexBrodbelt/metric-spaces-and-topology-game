@@ -26,7 +26,9 @@ open Topology Filter
 variable {X : Type*} [MetricSpace X] (a b c : X)
 
 Statement :
-    IsOpen { x | dist x c > r } := by
+    IsClosed { x | dist x c ≤ r } := by
+  Hint "A set $S$ is closed iff $S^c$ is open"
+  rw [isOpen_compl_iff.symm, Set.compl_setOf]; simp only [not_le]
   Hint "A set $S$ is open iff ∀ a ∈ S ∃ ε > 0 such that Ball a ε ⊆ S"
   rw [Metric.isOpen_iff]
   intro a ainS
@@ -43,7 +45,7 @@ Statement :
   -- TODO the user would have used "intro" before, but not in the
   -- context of showing something is a subset
   -- explicit hint here too mb
-  intro b binB; dsimp
+  intros b binB; dsimp
   Hint "unfold the definition of b ∈ ball"
   rw [Metric.ball] at binB; dsimp at binB
   have h₀ : - (dist a c - r) / 2 < - dist b a := by linarith [binB]

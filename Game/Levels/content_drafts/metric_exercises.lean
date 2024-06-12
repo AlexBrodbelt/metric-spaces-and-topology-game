@@ -178,6 +178,15 @@ lemma if_continuous_then_preimage_of_open_is_open {X Y : Type* }[MetricSpace X] 
 
 -- lemma ball_is_open { X : Type* } [ MetricSpace X ] {x : X} : IsOpen (Metric.ball x ε) := by
 --   exact
+lemma disjoint_balls { X : Type* } [MetricSpace X ] {a b : X} : a ≠ b → ∃ r > 0, (Metric.ball a r) ∩ (Metric.ball b r) = ∅ := by
+  intro a_neq_b
+  use (dist a b) / 2
+  constructor
+  · apply half_pos
+    rw [dist_pos]
+    apply a_neq_b
+  · sorry
+
 
 lemma if_preimage_of_open_is_open_then_continuous  {X Y : Type* }[MetricSpace X] [MetricSpace Y] {f : X → Y} (hf : ∀ s, IsOpen s → IsOpen (f ⁻¹' s)) : ∀ (x₀ : X), ∀ ε > 0, ∃ δ > 0, ∀ (x : X), dist x x₀ < δ → dist (f x) (f x₀) < ε := by
   intro x ε εpos
