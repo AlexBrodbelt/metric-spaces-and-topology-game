@@ -8,7 +8,7 @@ import Game.Metadata
 World "TopologyWorld"
 Level 4
 
-Title ""
+Title "Equivalent definition for continuity"
 
 Introduction "Topology intro"
 

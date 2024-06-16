@@ -38,7 +38,7 @@ Statement:
     (∀ (x y : ℝ), |x - y| ≥ |x| - |y|) := by
   Hint "To prove iff statements, use `constructor` to reduce to proving each direction"
   constructor
-  · intro tri_ineq x y
+  · intros tri_ineq x y
     Hint "With what values can you `specialize` the triangle inequality to prove the claim?"
     specialize tri_ineq x y 0
     Hint "To simplify your hypothesis into the goal, you may like to use tactics `ring_nf` or `rw` with theorems in tab to the right."
@@ -50,7 +50,7 @@ Statement:
     rw [sub_zero] at tri_ineq
     Hint "The `linarith` tactic is pretty good in these situations"
     linarith
-  · intro rev_tri_ineq x y z
+  · intros rev_tri_ineq x y z
     specialize rev_tri_ineq (x-z) (y-z)
     Hint "Look at the right panel to find useful theorems to rewrite your hypothesis"
     Branch
@@ -65,6 +65,6 @@ Conclusion "The triangle inequality is a key part of many proofs around limits i
 /- use these commands to add items to the game's inventory. -/
 
 
-NewTactic rw nth_rewrite rfl linarith intro constructor specialize
+NewTactic rw nth_rewrite rfl linarith intros constructor specialize
 
 NewTheorem sub_sub_sub_comm sub_self sub_zero useful_rewrite

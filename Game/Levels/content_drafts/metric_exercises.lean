@@ -3,6 +3,7 @@ import Mathlib.Util.Delaborators
 import Mathlib.Topology.Instances.Real
 import Mathlib.Analysis.NormedSpace.BanachSteinhaus
 import Mathlib.Data.Set.Basic
+import Mathlib.Topology.MetricSpace.Bounded
 
 open Set Filter Topology
 
@@ -185,8 +186,17 @@ lemma disjoint_balls { X : Type* } [MetricSpace X ] {a b : X} : a ≠ b → ∃ 
   · apply half_pos
     rw [dist_pos]
     apply a_neq_b
-  · sorry
+  · by_contra inter_nonempty
+    push_neg at inter_nonempty
+    rcases inter_nonempty with ⟨x, x_in_ball_a, x_in_ball_b⟩
+    rw [Metric.mem_ball] at x_in_ball_b x_in_ball_a
+    apply lt_irrefl (dist a b)
+    calc dist a b
+    _ ≤ dist a x + dist x b := by apply dist_triangle
+    _ < (dist a b) / 2 + (dist a b) / 2 := by rw [dist_comm a x]; apply add_lt_add x_in_ball_a x_in_ball_b
+    _ = dist a b := by rw [add_halves]
 
+-- lemma uniqueness {X : Type*} [ MetricSpace X ] { xₙ : ℕ → X } {a b : X } : Tendsto u atTop (𝓝 a)
 
 lemma if_preimage_of_open_is_open_then_continuous  {X Y : Type* }[MetricSpace X] [MetricSpace Y] {f : X → Y} (hf : ∀ s, IsOpen s → IsOpen (f ⁻¹' s)) : ∀ (x₀ : X), ∀ ε > 0, ∃ δ > 0, ∀ (x : X), dist x x₀ < δ → dist (f x) (f x₀) < ε := by
   intro x ε εpos
@@ -204,11 +214,6 @@ lemma if_preimage_of_open_is_open_then_continuous  {X Y : Type* }[MetricSpace X]
 
 -- lemma if_closed_then_every_convergent_sequence_converges {X : Type* } [MetricSpace X] {s : Set X} (hs : IsClosed s) : (∀ ⦃x : ℕ → X⦄, (∀ n, x n ∈ s), ∃ a ∈ X, ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, dist (x n) a < ε) → a ∈ s := by sorry
 
-lemma heine_borel_mp {s : Set ℝ} [MetricSpace ℝ ] : IsSeqCompact s → (IsClosed s) ∧ (Bornology.IsBounded s) := by
-  intro s_is_sequentially_compact
-  constructor
-  · sorry
-  · sorry
 
 lemma if_compact_then_sequentially_compact {s : Set X} (hs : IsCompact s) : IsSeqCompact s := by
   intro x x_in_s
@@ -301,7 +306,7 @@ lemma if_closed_then_every_converging_sequence_converges_in_set {s : Set X} {u :
   trivial
 
 
-lemma if_every_convergent_sequence_converges_in_set_then_closed {s : Set X }: (∀ u : ℕ → s, (∃ a : s, ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, dist (u n) a < ε)) → IsClosed s := by
+lemma if_every_convergent_sequence_converges_in_set_then_closed {X : Type*} [ MetricSpace X ]{s : Set X }: (∀ u : ℕ → s, (∃ a : s, ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, dist (u n) a < ε)) → IsClosed s := by
   intro u_converges_in_s
   rw [← isOpen_compl_iff, Metric.isOpen_iff]
   intro x x_in_s_compl
@@ -350,6 +355,14 @@ lemma if_every_convergent_sequence_converges_in_set_then_closed {s : Set X }: (�
   contradiction
   -- absurd x_in_s_compl x_in_s
   -- trivial
+
+-- lemma heine_borel_mp [ MetricSpace ℝ ] {s : Set ℝ}: IsSeqCompact s → (IsClosed s) ∧ (Bornology.IsBounded s) := by
+--   intro s_is_sequentially_compact
+--   constructor
+--   · sorry --apply if_every_convergent_sequence_converges_in_set_then_closed
+--   · rw [Bounded.isBounded_iff_subset_closedBall]; sorry
+
+
 
 
 theorem isClosed_of_closure_subset_ {s : Set X} (h : closure s ⊆ s) : IsClosed s := by
